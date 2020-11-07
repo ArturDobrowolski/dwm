@@ -1,0 +1,49 @@
+Artur's build of the suckless Dynamic Window Manager [dwm-6.2]
+--------------------------------------------------------------
+dwm is a dynamic window manager for X made by suckless.org
+
+The following patches were applied:
+	1. dwm-autostart: Allows to run startup applications on dwm start.
+		https://dwm.suckless.org/patches/autostart/
+	2. dwm-bar-height: Adjustable top bar height.
+		https://dwm.suckless.org/patches/bar_height/
+	3. dwm-fullgaps: Add gaps between client windows.
+		https://dwm.suckless.org/patches/fullgaps/
+	4. dwm-hide_vacant_tags: This patch prevents dwm from drawing tags with no clients.
+		https://dwm.suckless.org/patches/hide_vacant_tags/
+	5. dwm-statuscmd: This patch adds the ability to execute shell commands based on the mouse button and position when clicking the status bar.
+		https://dwm.suckless.org/patches/statuscmd/
+	6. dwm-xrdb: Allows dwm to read colors from xrdb.
+		https://dwm.suckless.org/patches/xrdb/
+	7. dwm-centeredmaster: Added two stack layouts to dwm.
+
+Some of the patches were slightly altered in order to play nice with my system configuration.
+
+Additional features:
+	* Removed iscol function inside drw.c in order to handle color icons/emojis in the statusbar.
+	* Tweaked minor appearance settings.
+
+Keyboard shortcuts:
+	Super+r - run command via dmenu
+	Super+Shift+Enter - open new terminal window
+	Super+b - toggle bar
+	Super+i - increase master
+	Super+d - decrease master
+	Super+j - focus previous window 
+	Super+k - focus next window
+	Super+h - smaller focused window
+	Super+l - larger focused window
+	Super+q - close window
+	Super+t - tiling layout
+	Super+f - floating layout
+	Super+m - monocle layout
+	Super+Shift+Space - toggle floating
+	Super+comma - switch focus to the screen on the left
+	Super+period - switch focus to the screen on the right
+	Super+Shift+comma - move window to the screen on the left
+	Super+Shift+period - move window to the screen on the right
+	Super+minus - smaller gaps
+	Super+plus - larger gaps
+	Super+F10 - reload xrdb
+	Super+{1-9} - switch to tag
+	Super+0 - show all tags
