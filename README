@@ -16,6 +16,7 @@ The following patches were applied:
 	6. dwm-xrdb: Allows dwm to read colors from xrdb.
 		https://dwm.suckless.org/patches/xrdb/
 	7. dwm-centeredmaster: Added two stack layouts to dwm.
+		https://dwm.suckless.org/patches/centeredmaster/
 
 Some of the patches were slightly altered in order to play nice with my system configuration.
 
