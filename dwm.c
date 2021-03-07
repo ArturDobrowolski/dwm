@@ -1587,7 +1587,7 @@ run(void)
 void
 autostart(void)
 {
-	system("~/.local/bin/sys/startup-sequence");
+	system("startup-sequence");
 }
 
 void
