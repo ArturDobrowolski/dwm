@@ -10,7 +10,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 22;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 //static const char *fonts[]          = { "FantasqueSansMono Nerd Font:size=14", "Font Awesome:pixelsize=14:antialias=true" };
 static const char *fonts[]          = { "FantasqueSansMono Nerd Font:size=13", "JoyPixels:pixelsize=13:antialias=true:autohint=true" };
-static const char dmenufont[]       = { "FantasqueSansMono Nerd Font:size=14" };
+static const char dmenufont[]       = { "FantasqueSansMono Nerd Font:size=13" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -36,7 +36,6 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ "fs-uae",  NULL,     NULL,           0,         0,          0,           1,        -1 },
 };
 
 /* layout(s) */
