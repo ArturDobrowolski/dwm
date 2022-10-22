@@ -1,8 +1,4 @@
-/* See LICENSE file for copyright and license details. */
-
-/* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+/* See LICENSE file for copyright and license details. */ /* appearance */ static const unsigned int borderpx  = 2;        /* border pixel of windows */ static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 25;       /* horiz outer gap between windows and screen edge */
@@ -30,9 +26,8 @@ static const char *const autostart[] = {
         "dwmblocks", NULL,
         "dunst", NULL,
         "xcompmgr", NULL,
-        "sh", "-c", "fetch-news", NULL,
-        "sh", "-c", "set-wallpaper", NULL,
-        "sh", "-c", "sighandler schedule", NULL,
+        /* Run shell scripts with a special handler script */ 
+        "sh", "-c", "startup-sequence", NULL,
 	NULL /* terminate */
 };
 
