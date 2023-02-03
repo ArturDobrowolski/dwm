@@ -43,7 +43,7 @@ static const Rule rules[] = {
 	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "FS-UAE",       0,         0,          0,           1,        -1 }, /* fs-uae */
+	/*{ NULL,      NULL,     "FS-UAE",       0,         0,          0,           1,        -1 }, fs-uae */
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
