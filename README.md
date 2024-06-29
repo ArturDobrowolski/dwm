@@ -1,4 +1,4 @@
-# Custom [dwm-6.5](https://git.suckless.org/dwm.git) build
+# Custom [dwm-6.5](https://git.suckless.org/dwm) build
 
 ## Modded with the following patches:
 1. [Bar height](https://dwm.suckless.org/patches/bar_height/)
