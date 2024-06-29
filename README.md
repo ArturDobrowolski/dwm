@@ -14,6 +14,8 @@
 11. [Tag color scheme](https://dwm.suckless.org/patches/tagcolorscheme/) - added the ability to configure tag colors using Xresources
 12. [Sticky indicator](https://dwm.suckless.org/patches/stickyindicator/)
 
+Patched with [dwm-fixborders](https://dwm.suckless.org/patches/alpha/dwm-fixborders-6.2.diff) to fix St transparent border issue when X composite manager  is enabled.
+
 ## Installation
 To install dwm simply run:
 ```
