@@ -43,9 +43,13 @@ static char *tagsel[][2] = {
 };
 
 static const char *const autostart[] = {
-        NULL /* terminate */
+	"xcompmgr", NULL,
+	"dwmctl", "-f", "kbsetup", NULL,
+	"dwmctl", "-f", "setwp", "-c", "set", NULL,
+	"modbar", NULL,
+	"dunst", NULL,
+    NULL /* terminate */
 };
-
 
 static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
 static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
@@ -103,6 +107,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
+#define NOKEY 0
 #define MODKEY Mod4Mask
 #define ALT Mod1Mask
 #define TAGKEYS(KEY,TAG) \
@@ -112,18 +117,21 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* Default applications */
-#define TERMINAL "st"
+#define SHELL "/bin/sh"
+#define TERMINAL "/usr/local/bin/st"
 
 /* command spawn macros */
-#define SHCMD(cmd) 			{ .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define SHCMD(cmd) 			{ .v = (const char*[]){ SHELL, "-c", cmd, NULL } }
+#define STCMD(cmd)			{ .v = (const char*[]){ SHELL, "-c", (TERMINAL " " "-e" " " cmd), NULL} }
 #define TERMCMD(...)        { .v = (const char*[]){ TERMINAL, "-e", __VA_ARGS__, NULL } }
+#define DWMCTL(func, cmd)	{ .v = (const char*[]){ "dwmctl", "-f", func, "-c", cmd, NULL } }
 #define REDSHIFT(arg)       { .v = (const char*[]){ "redshift", "-PO" arg, NULL } }
 #define REDSHIFT_DEFAULT    { .v = (const char*[]){ "redshift", "-x", NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { TERMINAL, NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -220,6 +228,41 @@ static const Key keys[] = {
 	{ ShiftMask,          			XK_F10,    		spawn,          REDSHIFT("4500") },
 	{ ShiftMask,         			XK_F11,    		spawn,          REDSHIFT("5000") },
 	{ ShiftMask,          			XK_F12,    		spawn,          REDSHIFT("5500") },
+
+	/* Applications */
+	{ MODKEY,						XK_w,			spawn,			SHCMD("$BROWSER") },
+	{ MODKEY|ALT,					XK_w,			spawn,			SHCMD("$BROWSER_ALT0") },
+	{ MODKEY|ShiftMask,				XK_w,			spawn,			SHCMD("$BROWSER_ALT1") },
+	{ MODKEY,						XK_e,			spawn,			SHCMD("$FILE_EXPLORER") },
+	{ MODKEY|ALT,					XK_e,			spawn,			SHCMD("$FILE_EXPLORER_ALT0") },
+	{ MODKEY|ShiftMask,				XK_e,			spawn,			SHCMD("$FILE_EXPLORER_ALT1") },
+	{ MODKEY,						XK_F9,			spawn,			SHCMD("$IM") },
+	{ MODKEY,						XK_F10,			spawn,			SHCMD("$IM_ALT0") },
+	{ MODKEY,						XK_F11,			spawn,			SHCMD("$IM_ALT1") },
+	{ MODKEY,						XK_F12,			spawn,			SHCMD("$IM_ALT2") },
+	{ MODKEY,						XK_g,			spawn,			SHCMD("$GFX_EDITOR") },
+	{ MODKEY|ShiftMask,				XK_g,			spawn,			SHCMD("$GFX_EDITOR_ALT0") },
+	{ MODKEY,						XK_n,			spawn,			STCMD("$RSS_READER") },
+	{ MODKEY,						XK_t,			spawn,			STCMD("$SYSTEM_MONITOR") },
+	{ MODKEY|ShiftMask,				XK_t,			spawn,			STCMD("$SYSTEM_MONITOR_ALT0") },
+
+	/* dwmctl */
+	{ MODKEY,						XK_F1,			spawn,			DWMCTL("volumectl", "toggle") },
+	{ MODKEY,						XK_F2,			spawn,			DWMCTL("volumectl", "down") },
+	{ MODKEY,						XK_F3,			spawn,			DWMCTL("volumectl", "up") },
+	{ MODKEY,						XK_F5,			spawn,			DWMCTL("backlightctl", "down") },
+	{ MODKEY,						XK_F6,			spawn,			DWMCTL("backlightctl", "up") },
+	{ MODKEY|ShiftMask,				XK_l,			spawn,			DWMCTL("powermgr", "lock" ) },
+	{ MODKEY|ShiftMask,				XK_p,			spawn,			DWMCTL("powermgr", "shutdown") },
+	{ MODKEY|ShiftMask,				XK_r,			spawn,			DWMCTL("powermgr", "restart") },
+	{ MODKEY|ShiftMask,				XK_v,			spawn,			DWMCTL("displaysel", NULL) },
+	{ MODKEY|ShiftMask,				XK_s,			spawn,			DWMCTL("setwp", "select") },
+	{ NOKEY,                        XK_Print,  		spawn,          DWMCTL("screenshot", "selection") }, 
+    { MODKEY,                       XK_Print,  		spawn,          DWMCTL("screenshot", "window") }, 
+    { MODKEY|ShiftMask,             XK_Print,  		spawn,          DWMCTL("screenshot", "all") }, 
+	{ MODKEY,						XK_p,			spawn,			DWMCTL("getpass", NULL) },
+	{ MODKEY,						XK_b,			spawn,			DWMCTL("bluetoothconn", "connect") },
+	{ MODKEY|ALT,					XK_b,			spawn,			DWMCTL("bluetoothconn", "disconnect") },
 
 	/* Tagkeys */
 	TAGKEYS(                        XK_1,                      0)
